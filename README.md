@@ -28,9 +28,9 @@ If using cameras which relies on apps YOOSEE or Y05, you must set your encrypted
 I did not go too deep to check how to get set the proper encryption key to send the password parameter, so you will need to use `WireShark`.
 If the password could be set based on Onvif protocol, all the steps below will no longer be required. Maybe a future improvement based on [this](https://github.com/home-assistant/core/blob/dev/homeassistant/components/onvif/__init__.py).
 
-1. Download and install the [ONVIF Device Manager](https://sourceforge.net/projects/onvifdm/)
-2. Download and install [WireShark](https://www.wireshark.org/#download)
-3. Open the ONVIF Device Manager and connect to your camera
+1. Download and install the [ONVIF Device Manager](https://sourceforge.net/projects/onvifdm/).
+2. Download and install [WireShark](https://www.wireshark.org/#download).
+3. Open the ONVIF Device Manager and connect to your camera.
 
 3.1. If using YOOSEE cameras, firstly make sure to activate the option for "NVR connection" into camera settings in the app.
 
