@@ -10,13 +10,13 @@ When using ONVIF Device Manager application from PC application it is possible t
 
 Apparently, these cameras do not fully comply with the ONVIF protocol and the Home Assistant integration cannot integrate them at the moment.
 
-I have looked for a solution to be able to use in Home Assistant with the pan and tilt option.
+This is a solution to use the pan and tilt functions into cards Home Assistant.
 
-Using the Wireshark application I have been able to obtain information to use these cameras.
+Using the Wireshark application it is possible to obtain information to use these cameras.
 
-In order to use this custom component, I recommend that you integrate your cameras signal with motionEye. **This component does not integrate the video signal from your cameras, only the pan and tilt function.**
+In order to use this custom component, your camera signal with [motionEye](https://www.home-assistant.io/integrations/motioneye/). **This component does not integrate the video signal from your cameras, only the pan and tilt function.**
 
-Considerations:
+## Considerations
 1. YCC365 cameras do not require user and password to connect to ONVIF controls
 2. Y05 and YOOSEE cameras must have the user and password defined before using ONVIF controls. Check into your camera manual or search on Google how to setup it.
 3. YOOSEE cameras do not accept preset positions, just pan and tilt.
