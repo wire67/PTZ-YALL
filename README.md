@@ -17,10 +17,32 @@ Using the Wireshark application I have been able to obtain information to use th
 In order to use this custom component, I recommend that you integrate your cameras signal with motionEye. **This component does not integrate the video signal from your cameras, only the pan and tilt function.**
 
 ## Setup
-You just need to install the custom component as usual. Copy the ptz_camera folder from this project to your /config/custom_components/ directory on your Home Assistant.
+You need to install the custom component as usual. Copy the ptz_camera folder from this project to your `/config/custom_components/` directory on your Home Assistant.
+If using cameras which relies on apps YOOSEE or Y05, you must set your encrypted password and encryption key into the file `/config/custom_components/_init.py`.
+I did not go too deep to check how to get set the proper encryption key to send the password parameter, so you will need to use `WireShark`.
+If the password could be set based on Onvif protocol, all the steps below will no longer be required. Maybe a future improvement
+
+1. Download and install the [ONVIF Device Manager](https://sourceforge.net/projects/onvifdm/)
+2. Download and install [WireShark](https://www.wireshark.org/#download)
+3. Open the ONVIF Device Manager and connect to your camera
+3.1. If using YOOSEE cameras, firstly make sure to activate the option for "NVR connection" into camera settings in the app.
+4. Try the `PTZ Control` option into ONVIF Device Manager.
+4.1. Make sure to select the option `Continuous move` in the PTZ Control settings.
+4.2. If it works, go to the next step.
+4.3. If not, check the item 3 or your camera's IP into your router.
+6. Select your network card or Wi-Fi connect and activate the WireShark packets capturing: `Capture --> Start`
+7. Return to ONVIF Device Manager and move your camera to any direction.
+8. Stop the WireShark packet capturing:  `Capture --> Stop`
+9. In the WireShark filter field, search for commands sent from your computer to the camera: `ip.dst == 192.168.1.244`
+10. Look for an entry with protocol like "HTTP/XML" and POST event. Rigth-click and go to `Follow -> TCP Stream`. Look for tags `<Password>` and `<Nonce>`.
+![](wireshark.jpg)
+11. Copy them and modify the file `/config/custom_components/_init.py` to add your camera's information.
+12. Add the `ptz_camera:` entry into your `configuration.yaml` file.
+13. Restart Home Assistant.
+14. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom).
 
 ## Setting
-In your configuration.yaml:
+In your `configuration.yaml`:
 
 ```yaml
 ptz_camera:
@@ -41,6 +63,8 @@ camera:
 
 ## Card with controls
 An easy way to use the pan and tilt controls is to overlay the controls on top of a camera image. Replace the IP address in this example with the IP address of your camera.
+
+Example for YOOSEE camera.
 
 ```yaml
 type: picture-elements
@@ -150,8 +174,202 @@ elements:
       color: white
       opacity: 0.5
       transform: scale(1.5, 1.5)
-
-
 ```
-      
+Example for Y05 camera:
+```yaml
+type: picture-elements
+camera_view: live
+camera_image: camera.camera_1
+elements:
+  - type: icon
+    icon: mdi:arrow-left-drop-circle
+    hold_action:
+      action: none
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_left
+      service_data:
+        host: 192.168.1.244
+        camera_type: Y05
+    style:
+      bottom: 45%
+      left: 5%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+  - type: icon
+    icon: mdi:arrow-right-drop-circle
+    hold_action:
+      action: none
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_right
+      service_data:
+        host: 192.168.1.244
+        camera_type: Y05
+    style:
+      bottom: 45%
+      right: 5%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+  - type: icon
+    icon: mdi:arrow-up-drop-circle
+    hold_action:
+      action: none
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_up
+      service_data:
+        host: 192.168.1.244
+        camera_type: Y05
+    style:
+      top: 10%
+      left: 46%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+  - type: icon
+    icon: mdi:arrow-down-drop-circle
+    hold_action:
+      action: none
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_down
+      service_data:
+        host: 192.168.1.244
+        camera_type: Y05
+    style:
+      bottom: 10%
+      left: 46%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+  - type: icon
+    icon: mdi:arrow-expand-all
+    hold_action:
+      action: none
+    tap_action:
+      action: fire-dom-event
+      browser_mod:
+        command: popup
+        deviceID:
+          - this
+        title: Camera Full View
+        large: true
+        card:
+          type: custom:webrtc-camera
+          muted: true
+          url: rtsp://admin:xxxxxx@192.168.1.244:8554/profile0
+    style:
+      top: 5%
+      right: 5%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+  - type: icon
+    icon: mdi:home-circle
+    hold_action:
+      action: none
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_origin
+      service_data:
+        host: 192.168.1.244
+        camera_type: Y05
+        move_time: 0.7
+    style:
+      bottom: 5%
+      right: 5%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+  - type: icon
+    icon: mdi:cctv-off
+    hold_action:
+      action: none
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_privacy
+      service_data:
+        host: 192.168.1.244
+        camera_type: Y05
+    style:
+      bottom: 5%
+      left: 5%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+```
+
+Example for YCC365
+```yaml
+type: picture-elements
+camera_view: live
+camera_image: camera.salon
+elements:
+  - type: icon
+    icon: 'mdi:arrow-left-drop-circle'
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_left
+      service_data:
+        host: 192.168.1.244
+    style:
+      bottom: 45%
+      left: 5%
+      color: white
+      opacity: 0.5
+      transform: 'scale(1.5, 1.5)'
+  - type: icon
+    icon: 'mdi:arrow-right-drop-circle'
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_right
+      service_data:
+        host: 192.168.1.244
+    style:
+      bottom: 45%
+      right: 5%
+      color: white
+      opacity: 0.5
+      transform: 'scale(1.5, 1.5)'
+  - type: icon
+    icon: 'mdi:arrow-up-drop-circle'
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_up
+      service_data:
+        host: 192.168.1.244
+    style:
+      top: 10%
+      left: 46%
+      color: white
+      opacity: 0.5
+      transform: 'scale(1.5, 1.5)'
+  - type: icon
+    icon: 'mdi:arrow-down-drop-circle'
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_down
+      service_data:
+        host: 192.168.1.244
+    style:
+      bottom: 10%
+      left: 46%
+      color: white
+      opacity: 0.5
+      transform: 'scale(1.5, 1.5)'
+  - type: icon
+    icon: 'mdi:arrow-expand-all'
+    tap_action:
+      action: more-info
+    entity: camera.salon
+    style:
+      top: 5%
+      right: 5%
+      color: white
+      opacity: 0.5
+      transform: 'scale(1.5, 1.5)'
+```
 ![](tarjeta.jpg)
