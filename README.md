@@ -10,7 +10,7 @@ When using ONVIF Device Manager application from PC application it is possible t
 
 Apparently, these cameras do not fully comply with the ONVIF protocol and the Home Assistant integration cannot integrate them at the moment.
 
-This is a solution to use the pan and tilt functions into cards Home Assistant.
+This is a solution to use the pan and tilt functions into Home Assistant cards.
 
 Using the Wireshark application it is possible to obtain information to use these cameras.
 
