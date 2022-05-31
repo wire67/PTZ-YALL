@@ -1,89 +1,95 @@
+move_to_direction:
+  # Description of the service
+  description: "Move the camera to the requested direction."
+  # Different fields that your service accepts
+  fields:
+    # Key of the field
+    direction:
+      description: "Direction where the camera will be moved to."
+      example: "Down"
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
+    host:
+      # Description of the field
+      description: "Local ip address of the camera (without http: //). Required."
+      # Example value that can be passed for this field
+      example: "192.168.0.XX"
+    move_time:
+      description: "Duration time of camera movement. Optional."
+      example: 0.3
+
 move_left:
   # Description of the service
   description: "Move the camera to the left."
   # Different fields that your service accepts
   fields:
     # Key of the field
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
     host:
       # Description of the field
       description: "Local ip address of the camera (without http: //). Required."
       # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
-    move_time: 
+      example: "192.168.0.XX"
+    move_time:
       description: "Duration time of camera movement. Optional."
       example: 0.3
-      
+
 move_right:
   # Description of the service
   description: "Move the camera to the right."
   # Different fields that your service accepts
   fields:
     # Key of the field
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
     host:
       # Description of the field
       description: "Local ip address of the camera (without http: //). Required."
       # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
-    move_time: 
+      example: "192.168.0.XX"
+    move_time:
       description: "Duration time of camera movement. Optional."
       example: 0.3
-      
+
 move_up:
   # Description of the service
   description: "Move the camera to the up."
   # Different fields that your service accepts
   fields:
     # Key of the field
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
     host:
       # Description of the field
       description: "Local ip address of the camera (without http: //). Required."
       # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
-    move_time: 
+      example: "192.168.0.XX"
+    move_time:
       description: "Duration time of camera movement. Optional."
       example: 0.3
-      
+
 move_down:
   # Description of the service
   description: "Move the camera to the down."
   # Different fields that your service accepts
   fields:
     # Key of the field
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
     host:
       # Description of the field
       description: "Local ip address of the camera (without http: //). Required."
       # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
-    move_time: 
+      example: "192.168.0.XX"
+    move_time:
       description: "Duration time of camera movement. Optional."
       example: 0.3
-      
-move_stop:
-  # Description of the service
-  description: "Stop camera movement."
-  # Different fields that your service accepts
-  fields:
-    # Key of the field
-    host:
-      # Description of the field
-      description: "Local ip address of the camera (without http: //). Required."
-      # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
 
 move_origin:
   # Description of the service
@@ -91,44 +97,68 @@ move_origin:
   # Different fields that your service accepts
   fields:
     # Key of the field
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
     host:
       # Description of the field
       description: "Local ip address of the camera (without http: //). Required."
       # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
-    pan_time: 
+      example: "192.168.0.XX"
+    pan_time:
       description: "Panning time of the camera. In seconds."
-      example: 10
+      example: 4
+    tilt_time:
+      description: "Tilt time of the camera. In seconds."
+      example: 1
+    pan:
+      description: "Value from -1 to 1"
+      example: 0.1
+    tilt:
+      description: "Value from -1 to 1"
+      example: 0.1
+    move_steps:
+      description: "Quantity of moves until reaching the desired destination"
+      example: 60
+    move_time:
+      description: "Duration time of camera movement. Optional."
+      example: 0.3
 
-move_origin_pan:
+move_privacy:
   # Description of the service
-  description: "Move the camera to the pan origin."
+  description: "Move the camera to a privacy position."
   # Different fields that your service accepts
   fields:
     # Key of the field
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
     host:
       # Description of the field
       description: "Local ip address of the camera (without http: //). Required."
       # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
+      example: "192.168.0.XX"
+    move_steps:
+      description: "Quantity of moves until reaching the desired destination"
+      example: 60
+    move_time:
+      description: "Duration time of camera movement. Optional."
+      example: 0.3
 
-move_origin_tilt:
+move_to_preset:
   # Description of the service
-  description: "Move the camera to the tilt origin."
+  description: "Move the camera to the origin."
   # Different fields that your service accepts
   fields:
     # Key of the field
+    camera_type:
+      description: "Type of the camera to be controlled. Options: YOOSEE, YCC365 and Y05"
+      example: "Y05"
     host:
       # Description of the field
       description: "Local ip address of the camera (without http: //). Required."
       # Example value that can be passed for this field
-      example: "192.168.1.244"
-    profile: 
-      description: "Onvif profile that allows pant and tilt. Optional."
-      example: "Profile_1"
+      example: "192.168.0.XX"
+    preset_token:
+      description: "Token ID to be used by Onvif service"
+      example: "Preset2"
