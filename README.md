@@ -26,7 +26,7 @@ In order to use this custom component, capture your camera signal with [motionEy
 ## Setup
 You need to install the custom component as usual. Copy the `ptz_camera` folder from this project to your `/config/custom_components/` directory on your Home Assistant.
 If using cameras which relies on apps YOOSEE or Y05, you must set your encrypted password and encryption key into the file `/config/custom_components/_init.py`.
-I did not go too deep to check how to get set the proper encryption key to send the password parameter, so you will need to use `WireShark`.
+I did not go too deep to check how to set the proper encryption key to send the password parameter, so you will need to use `WireShark`.
 If the password could be set based on Onvif protocol, all the steps below will no longer be required. Maybe a future improvement based on [this](https://github.com/home-assistant/core/blob/dev/homeassistant/components/onvif/__init__.py).
 
 1. Download and install the [ONVIF Device Manager](https://sourceforge.net/projects/onvifdm/).
