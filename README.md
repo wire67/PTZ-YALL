@@ -14,7 +14,7 @@ This is a solution to use the pan and tilt functions into cards Home Assistant.
 
 Using the Wireshark application it is possible to obtain information to use these cameras.
 
-In order to use this custom component, your camera signal with [motionEye](https://www.home-assistant.io/integrations/motioneye/).
+In order to use this custom component, capture your camera signal with [motionEye](https://www.home-assistant.io/integrations/motioneye/).
 
 ## Considerations
 1. YCC365 cameras do not require user and password to connect to ONVIF controls
