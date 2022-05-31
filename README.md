@@ -25,21 +25,27 @@ If the password could be set based on Onvif protocol, all the steps below will n
 1. Download and install the [ONVIF Device Manager](https://sourceforge.net/projects/onvifdm/)
 2. Download and install [WireShark](https://www.wireshark.org/#download)
 3. Open the ONVIF Device Manager and connect to your camera
+
 3.1. If using YOOSEE cameras, firstly make sure to activate the option for "NVR connection" into camera settings in the app.
+
 4. Try the `PTZ Control` option into ONVIF Device Manager.
+
 4.1. Make sure to select the option `Continuous move` in the PTZ Control settings.
+
 4.2. If it works, go to the next step.
+
 4.3. If not, check the item 3 or your camera's IP into your router.
-6. Select your network card or Wi-Fi connect and activate the WireShark packets capturing: `Capture --> Start`
-7. Return to ONVIF Device Manager and move your camera to any direction.
-8. Stop the WireShark packet capturing:  `Capture --> Stop`
-9. In the WireShark filter field, search for commands sent from your computer to the camera: `ip.dst == 192.168.1.244`
-10. Look for an entry with protocol like "HTTP/XML" and POST event. Rigth-click and go to `Follow -> TCP Stream`. Look for tags `<Password>` and `<Nonce>`.
-![](wireshark.jpg)
-11. Copy them and modify the file `/config/custom_components/_init.py` to add your camera's information.
-12. Add the `ptz_camera:` entry into your `configuration.yaml` file.
-13. Restart Home Assistant.
-14. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom).
+
+5. Select your network card or Wi-Fi connect and activate the WireShark packets capturing: `Capture --> Start`
+6. Return to ONVIF Device Manager and move your camera to any direction.
+7. Stop the WireShark packet capturing:  `Capture --> Stop`
+8. In the WireShark filter field, search for commands sent from your computer to the camera: `ip.dst == 192.168.1.244`
+9. Look for an entry with protocol like "HTTP/XML" and POST event. Rigth-click and go to `Follow -> TCP Stream`. Look for tags `<Password>` and `<Nonce>`.
+![](wireshark.png)
+10. Copy them and modify the file `/config/custom_components/_init.py` to add your camera's information.
+11. Add the `ptz_camera:` entry into your `configuration.yaml` file.
+12. Restart Home Assistant.
+13. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom, but expand option is possible. See Y05 and YCC365 examples).
 
 ## Setting
 In your `configuration.yaml`:
