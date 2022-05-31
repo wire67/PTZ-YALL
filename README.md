@@ -54,12 +54,6 @@ If the password could be set based on Onvif protocol, all the steps below will n
 12. Restart Home Assistant.
 13. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom, but full view with webRTC option is possible. See Y05 and YCC365 examples).
 
-## Setting
-In your `configuration.yaml`:
-
-```yaml
-ptz_camera:
-```
 ## Services
 This custom component creates several services with domain ptz_camera. To obtain information about these services you can use “Developer Tools” > Services. It will have detailed information about the arguments to call each service.
 
