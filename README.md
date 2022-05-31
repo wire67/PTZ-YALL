@@ -23,7 +23,7 @@ In order to use this custom component, your camera signal with [motionEye](https
 4. For YOOSEE cameras this control works based on move steps, the quantity of times it will be required to move until the desired position. The best that could be done so far.
 
 ## Setup
-You need to install the custom component as usual. Copy the ptz_camera folder from this project to your `/config/custom_components/` directory on your Home Assistant.
+You need to install the custom component as usual. Copy the `ptz_camera` folder from this project to your `/config/custom_components/` directory on your Home Assistant.
 If using cameras which relies on apps YOOSEE or Y05, you must set your encrypted password and encryption key into the file `/config/custom_components/_init.py`.
 I did not go too deep to check how to get set the proper encryption key to send the password parameter, so you will need to use `WireShark`.
 If the password could be set based on Onvif protocol, all the steps below will no longer be required. Maybe a future improvement based on [this](https://github.com/home-assistant/core/blob/dev/homeassistant/components/onvif/__init__.py).
