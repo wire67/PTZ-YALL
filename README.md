@@ -59,7 +59,7 @@ This custom component creates several services with domain ptz_camera. To obtain
 
 ## Camera Entity
 
-You can create a camera in the usual way. I recommend you to use the [motionEye](https://addons.community/) addon and create a mjpeg camera. It is the best setting I have found with a low delay. An example configuration would be:
+You can create a camera in the usual way. I recommend you to use the [motionEye](https://www.home-assistant.io/integrations/motioneye/) addon and create a mjpeg camera. It is the best setting I have found with a low delay. An example configuration would be:
 
 ```yaml
 camera:
