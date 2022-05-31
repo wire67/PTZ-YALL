@@ -45,7 +45,7 @@ If the password could be set based on Onvif protocol, all the steps below will n
 10. Copy them and modify the file `/config/custom_components/_init.py` to add your camera's information.
 11. Add the `ptz_camera:` entry into your `configuration.yaml` file.
 12. Restart Home Assistant.
-13. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom, but expand option is possible. See Y05 and YCC365 examples).
+13. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom, but full view with webRTC option is possible. See Y05 and YCC365 examples).
 
 ## Setting
 In your `configuration.yaml`:
