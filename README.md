@@ -16,6 +16,12 @@ Using the Wireshark application I have been able to obtain information to use th
 
 In order to use this custom component, I recommend that you integrate your cameras signal with motionEye. **This component does not integrate the video signal from your cameras, only the pan and tilt function.**
 
+Considerations:
+1. YCC365 cameras do not require user and password to connect to ONVIF controls
+2. Y05 and YOOSEE cameras must have the user and password defined before using ONVIF controls. Check into your camera manual or search on Google how to setup it.
+3. YOOSEE cameras do not accept preset positions, just pan and tilt.
+4. For YOOSEE cameras this control works based on move step, the quantity of time it will be required to move until the desired position. The best that could be done so far.
+
 ## Setup
 You need to install the custom component as usual. Copy the ptz_camera folder from this project to your `/config/custom_components/` directory on your Home Assistant.
 If using cameras which relies on apps YOOSEE or Y05, you must set your encrypted password and encryption key into the file `/config/custom_components/_init.py`.
