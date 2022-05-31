@@ -49,7 +49,7 @@ If the password could be set based on Onvif protocol, all the steps below will n
 8. In the WireShark filter field, search for commands sent from your computer to the camera: `ip.dst == 192.168.1.244`
 9. Look for an entry with protocol like "HTTP/XML" and POST event. Rigth-click and go to `Follow -> TCP Stream`. Look for tags `<Password>` and `<Nonce>`.
 ![](wireshark.png)
-10. Copy them and modify the file `/config/custom_components/_init.py` to add your camera's information.
+10. Copy them and modify the file `/config/custom_components/ptz_camera/_init.py` to add your camera's information.
 11. Add the `ptz_camera:` entry into your `configuration.yaml` file.
 12. Restart Home Assistant.
 13. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom, but full view with webRTC option is possible. See Y05 and YCC365 examples).
