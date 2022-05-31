@@ -45,71 +45,112 @@ An easy way to use the pan and tilt controls is to overlay the controls on top o
 ```yaml
 type: picture-elements
 camera_view: live
-camera_image: camera.salon
+camera_image: camera.camera_1
 elements:
   - type: icon
-    icon: 'mdi:arrow-left-drop-circle'
+    icon: mdi:arrow-left-drop-circle
+    hold_action:
+      action: none
     tap_action:
       action: call-service
       service: ptz_camera.move_left
       service_data:
         host: 192.168.1.244
+        camera_type: YOOSEE
+        move_time: 0.7
     style:
       bottom: 45%
       left: 5%
       color: white
       opacity: 0.5
-      transform: 'scale(1.5, 1.5)'
+      transform: scale(1.5, 1.5)
   - type: icon
-    icon: 'mdi:arrow-right-drop-circle'
+    icon: mdi:arrow-right-drop-circle
+    hold_action:
+      action: none
     tap_action:
       action: call-service
       service: ptz_camera.move_right
       service_data:
         host: 192.168.1.244
+        camera_type: YOOSEE
+        move_time: 0.7
     style:
       bottom: 45%
       right: 5%
       color: white
       opacity: 0.5
-      transform: 'scale(1.5, 1.5)'
+      transform: scale(1.5, 1.5)
   - type: icon
-    icon: 'mdi:arrow-up-drop-circle'
+    icon: mdi:arrow-up-drop-circle
+    hold_action:
+      action: none
     tap_action:
       action: call-service
       service: ptz_camera.move_up
       service_data:
         host: 192.168.1.244
+        camera_type: YOOSEE
+        move_time: 0.7
     style:
       top: 10%
       left: 46%
       color: white
       opacity: 0.5
-      transform: 'scale(1.5, 1.5)'
+      transform: scale(1.5, 1.5)
   - type: icon
-    icon: 'mdi:arrow-down-drop-circle'
+    icon: mdi:arrow-down-drop-circle
+    hold_action:
+      action: none
     tap_action:
       action: call-service
       service: ptz_camera.move_down
       service_data:
         host: 192.168.1.244
+        camera_type: YOOSEE
+        move_time: 0.7
     style:
       bottom: 10%
       left: 46%
       color: white
       opacity: 0.5
-      transform: 'scale(1.5, 1.5)'
+      transform: scale(1.5, 1.5)
   - type: icon
-    icon: 'mdi:arrow-expand-all'
+    icon: mdi:home-circle
+    hold_action:
+      action: none
     tap_action:
-      action: more-info
-    entity: camera.salon
+      action: call-service
+      service: ptz_camera.move_origin
+      service_data:
+        host: 192.168.1.244
+        camera_type: YOOSEE
+        move_time: 0.7
+        move_steps: 29
     style:
-      top: 5%
+      bottom: 5%
       right: 5%
       color: white
       opacity: 0.5
-      transform: 'scale(1.5, 1.5)'
+      transform: scale(1.5, 1.5)
+  - type: icon
+    icon: mdi:cctv-off
+    hold_action:
+      action: none
+    tap_action:
+      action: call-service
+      service: ptz_camera.move_privacy
+      service_data:
+        host: 192.168.1.244
+        camera_type: YOOSEE
+        move_time: 0.7
+    style:
+      bottom: 5%
+      left: 5%
+      color: white
+      opacity: 0.5
+      transform: scale(1.5, 1.5)
+
 
 ```
       
