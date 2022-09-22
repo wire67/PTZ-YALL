@@ -12,8 +12,6 @@ Apparently, these cameras do not fully comply with the ONVIF protocol and the Ho
 
 This is a solution to use the pan and tilt functions into Home Assistant cards.
 
-Using the Wireshark application it is possible to obtain information to use these cameras.
-
 In order to use this custom component, capture your camera signal with [motionEye](https://www.home-assistant.io/integrations/motioneye/).
 
 ## Considerations
@@ -26,33 +24,14 @@ In order to use this custom component, capture your camera signal with [motionEy
 ## Setup
 You need to install the custom component as usual. Copy the `ptz_camera` folder from this project to your `/config/custom_components/` directory on your Home Assistant.
 If using cameras which relies on apps YOOSEE or Y05, you must set your encrypted password and encryption key into the file `/config/custom_components/_init.py`.
-I did not go too deep to check how to set the proper encryption key to send the password parameter, so you will need to use `WireShark`.
-If the password could be set based on Onvif protocol, all the steps below will no longer be required. Maybe a future improvement based on [this](https://github.com/home-assistant/core/blob/dev/homeassistant/components/onvif/__init__.py).
+You don't need `WireShark`.
+The password is based on native Onvif protocol. Here is also the core HA Onvif component [this](https://github.com/home-assistant/core/blob/dev/homeassistant/components/onvif/__init__.py).
 
-1. Download and install the [ONVIF Device Manager](https://sourceforge.net/projects/onvifdm/).
-2. Download and install [WireShark](https://www.wireshark.org/#download).
-3. Open the ONVIF Device Manager and connect to your camera.
-
-3.1. If using YOOSEE cameras, firstly make sure to activate the option for "NVR connection" into camera settings in the app.
-
-4. Try the `PTZ Control` option into ONVIF Device Manager.
-
-4.1. Make sure to select the option `Continuous move` in the PTZ Control settings.
-
-4.2. If it works, go to the next step.
-
-4.3. If not, check the item 3 or your camera's IP into your router.
-
-5. Select your network card or Wi-Fi connect and activate the WireShark packets capturing: `Capture --> Start`
-6. Return to ONVIF Device Manager and move your camera to any direction.
-7. Stop the WireShark packet capturing:  `Capture --> Stop`
-8. In the WireShark filter field, search for commands sent from your computer to the camera: `ip.dst == 192.168.1.244`
-9. Look for an entry with protocol like "HTTP/XML" and POST event. Rigth-click and go to `Follow -> TCP Stream`. Look for tags `<Password>` and `<Nonce>`.
-![](wireshark.png)
-10. Copy them and modify the file `/config/custom_components/ptz_camera/_init.py` to add your camera's information.
-11. Add the `ptz_camera:` entry into your `configuration.yaml` file.
-12. Restart Home Assistant.
-13. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom, but full view with webRTC option is possible. See Y05 and YCC365 examples).
+1. If using YOOSEE cameras, firstly make sure to activate the option for "NVR connection" into camera settings in the app.
+2. Copy them and modify the file `/config/custom_components/ptz_camera/_init.py` to add your camera's information.
+3. Add the `ptz_camera:` entry into your `configuration.yaml` file.
+4. Restart Home Assistant.
+5. Setup your card with controls (see below) and try your camera with pan and tilt controls (no zoom, but full view with webRTC option is possible. See Y05 and YCC365 examples).
 
 ## Services
 This custom component creates several services with domain ptz_camera. To obtain information about these services you can use “Developer Tools” > Services. It will have detailed information about the arguments to call each service.
