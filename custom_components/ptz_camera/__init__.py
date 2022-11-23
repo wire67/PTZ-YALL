@@ -34,6 +34,7 @@ DEFAULT_MOVE_STEPS = 60
 # credentials used by Y05 and YOOSEE
 USR = "admin"
 YOUR_ONVIF_PWD = "your_onvif_password"
+IS_INVERT_UPDOWN = False
 
 ATTR_PRESET_TOKEN = "preset_token"
 ATTR_PAN_TIME = "pan_time"
@@ -261,7 +262,7 @@ def setup(hass, config):
     def move_up(call):
         move_time = call.data.get(ATTR_MOVE_TIME, DEFAULT_MOVE_TIME)
         cameraType = call.data.get(ATTR_CAMERA_TYPE, DEFAULT_CAMERA_TYPE)
-        if cameraType == CameraType.YOOSEE.name:
+        if IS_INVERT_UPDOWN:
             move(call, move_time, 0.0, -0.1)
         else:
             move(call, move_time, 0.0, 0.1)
@@ -269,7 +270,7 @@ def setup(hass, config):
     def move_down(call):
         move_time = call.data.get(ATTR_MOVE_TIME, DEFAULT_MOVE_TIME)
         cameraType = call.data.get(ATTR_CAMERA_TYPE, DEFAULT_CAMERA_TYPE)
-        if cameraType == CameraType.YOOSEE.name:
+        if IS_INVERT_UPDOWN:
             move(call, move_time, 0.0, 0.1)
         else:
             move(call, move_time, 0.0, -0.1)
